@@ -28,8 +28,6 @@ export class TodoService {
     this.taskList[id].title = newTitle;
     this.tasksEmitter.emit(this.taskList.slice());
     this.updateLocalStorage();
-
-
   }
   checkifDuplicate(newTitle) {
     let isDuplicate = this.taskList.map(obj => obj.title).includes(newTitle);
