@@ -22,10 +22,19 @@ export class TodoService {
     this.tasksEmitter.emit(this.taskList.slice());
   }
   editTaskItem(newTitle: string, id: number) {
+    if (this.checkifDuplicate(newTitle)) {
+      return;
+    }
     this.taskList[id].title = newTitle;
     this.tasksEmitter.emit(this.taskList.slice());
     this.updateLocalStorage();
 
+
+  }
+  checkifDuplicate(newTitle) {
+    let isDuplicate = this.taskList.map(obj => obj.title).includes(newTitle);
+    console.log(isDuplicate, "Duplicate");
+    return isDuplicate;
   }
   deleteTask(index) {
     this.taskList.splice(index, 1);
@@ -37,6 +46,7 @@ export class TodoService {
     this.updateLocalStorage();
     this.tasksEmitter.emit(this.taskList.slice());
   }
+
   //Local Storage funcs
   getTasksFromLocalStorage() {
     let items: any;

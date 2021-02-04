@@ -13,6 +13,7 @@ export class ListItemComponent implements OnInit {
 
   isEditMode: boolean = false;
   titleEdit: string;
+
   constructor(private todo: TodoService) { }
 
   ngOnInit(): void {
@@ -26,7 +27,8 @@ export class ListItemComponent implements OnInit {
   }
   saveEdit() {
     this.todo.editTaskItem(this.titleEdit, this.id);
-    this.titleEdit = '';
+    // this.titleEdit = '';
+    this.titleEdit = this.taskData.title;
     this.toggleEdit();
   }
   setBadgeColor() {

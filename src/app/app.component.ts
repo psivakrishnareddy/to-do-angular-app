@@ -41,9 +41,9 @@ export class AppComponent implements OnInit {
         category: this.form.value.category,
         desc: this.form.value.description
       };
-      let isDuplicate = this.taskListData.map(obj => obj.title).findIndex(itm => itm === data.title);
-      console.log(isDuplicate, "Is duplicate?")
-      if (isDuplicate === -1) {
+      // let isDuplicate = this.taskListData.map(obj => obj.title).findIndex(itm => itm === data.title);
+      // console.log(isDuplicate, "Is duplicate?")
+      if (!this.todo.checkifDuplicate(data.title)) {
         this.todo.addTaskItem(data);
 
       } else {
